@@ -22,10 +22,10 @@ export default function todos(state: TodosState = [], action: Types.TodoAction):
             const todo = state[idx];
             return [
                 ...state.slice(0, idx),
-                ...state.slice(idx + 1),
                 Object.assign({}, todo, {
                     completed: !todo.completed
-                })
+                }),
+                ...state.slice(idx + 1)
             ];
         default:
             return state;

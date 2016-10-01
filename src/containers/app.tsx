@@ -8,6 +8,7 @@ const { Todo } = Creators;
 export interface AppProps {
     todos: ITodo[]; // TODO
     addTodo(text: string): void;
+    toggleTodo(id: number): void;
 }
 
 class App extends React.Component<AppProps, void> {
@@ -24,7 +25,6 @@ class App extends React.Component<AppProps, void> {
                     </form>
                     <br />
                     <hr />
-                    <br />
                     {this._todosToList()}
                 </fieldset>
             </section>
@@ -33,7 +33,18 @@ class App extends React.Component<AppProps, void> {
 
     private _todosToList(): JSX.Element {
         const { todos } = this.props;
-        return <ul>{ todos.map(t => <li key={t.id}>{t.text}</li>) }</ul>;
+        return <ul>{todos.map(t => this._todoToListItem(t))}</ul>;
+    }
+
+    private _todoToListItem(todo: ITodo): JSX.Element {
+        const { toggleTodo } = this.props;
+        return <li key={todo.id}><button style={this._getStylesFor(todo)} onClick={() => toggleTodo(todo.id)}>{todo.text}</button></li>;
+    }
+
+    private _getStylesFor(todo: ITodo): React.CSSProperties {
+        return {
+            textDecoration: (todo.completed) ? 'line-through' : 'none'
+        };
     }
 
     private _handleAdd(event: Event): void {
@@ -56,6 +67,9 @@ function mapDispatchToProps(dispatch: any): any { // TODO
     return {
         addTodo(text: string): void {
             dispatch(Todo.addTodo(text));
+        },
+        toggleTodo(id: number): void {
+            dispatch(Todo.toggleTodo(id));
         }
     };
 }

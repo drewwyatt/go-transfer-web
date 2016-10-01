@@ -3,13 +3,14 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
+	debug: true,
     entry: {
 		vendor: [
 			"react",
 			"redux"
 		],
 		app: [
-			path.resolve('./src/index.ts')
+			path.resolve('./src/index.tsx')
 		]
 	},
     output: {
@@ -28,7 +29,7 @@ const config = {
         loaders: [{
 			test: /\.tsx?$/,
 			loaders: [
-				'babel?presets[]=es2015',
+				'babel',
 				'ts-loader'
 			]
 		}]

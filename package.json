@@ -2,8 +2,8 @@
   "name": "ts-redux",
   "version": "0.1.0",
   "description": "Typescript Redux Boilerplate",
-  "main": "dist/index.js",
   "scripts": {
+    "start": "webpack-dev-server --progress --inline",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },

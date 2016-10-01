@@ -1,17 +1,32 @@
-export interface Todo {
-    title: string;
-    completed: boolean;
-}
+import { Types } from '../actions';
+import { ITodo } from '../models';
 
-export type TodosState = Todo[];
+const { TodoActions } = Types;
 
-export interface Action {
-    type: string;
-    payload: any;
-}
-
-export default function todos(state: TodosState = [], action: Action): TodosState {
+export type TodosState = ITodo[];
+export default function todos(state: TodosState = [], action: Types.TodoAction): TodosState {
     switch (action.type) {
+        case TodoActions.ActionType.ADD_TODO:
+            const { text } = action.payload;
+            return [
+                ...state,
+                {
+                    id: state.length + 1,
+                    text,
+                    completed: false
+                }
+            ];
+        case TodoActions.ActionType.TOGGLE_TODO:
+            const { id } = action.payload;
+            const idx = state.findIndex(x => x.id === id);
+            const todo = state[idx];
+            return [
+                ...state.slice(0, idx),
+                ...state.slice(idx + 1),
+                Object.assign({}, todo, {
+                    completed: !todo.completed
+                })
+            ];
         default:
             return state;
     }

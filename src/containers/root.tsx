@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
+import App from './app';
 
 export interface RootProps {
     store: any; // todo
@@ -11,8 +12,7 @@ class Root extends React.Component<RootProps, void> {
         return (
             <Provider store={store}>
                 <main>
-                    <h1>Typescript 2 + Redux</h1>
-                    <p>This is a react app.</p>
+                    <App />
                 </main>
             </Provider>
         );

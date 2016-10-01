@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
 	debug: true,
+	devtool: 'eval-cheap-source-map',
     entry: {
 		vendor: [
 			"react",
@@ -34,6 +35,9 @@ const config = {
 			]
 		}]
     },
+	resolve: {
+		extensions: ['', '.ts', '.tsx', '.js', '.json']
+	},
     devServer: {
 		contentBase: path.resolve('./dist'),
 		compress: true,

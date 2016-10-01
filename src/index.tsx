@@ -1,15 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { Root } from './containers';
+import configureStore from './store/configure';
 
-class App extends React.Component<void, void> {
-    render(): JSX.Element {
-        return (
-            <main>
-                <h1>Typescript 2 + Redux</h1>
-                <p>This is a react app.</p>
-            </main>
-        );
-    }
-}
+const store = configureStore();
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Root store={store} />, document.getElementById('root'));

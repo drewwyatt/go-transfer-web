@@ -1,6 +1,6 @@
-import Root from './root';
+import Home from './home';
 import App from './app';
 export {
-    Root,
-    App
+    App,
+    Home
 };

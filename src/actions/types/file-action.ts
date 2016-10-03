@@ -6,7 +6,8 @@ export namespace FileActions {
     export const ActionType = {
         POST_FILE: 'POST_FILE' as 'POST_FILE',
         POST_FILE_SUCCESS: 'POST_FILE_SUCCESS' as 'POST_FILE_SUCCESS',
-        POST_FILE_ERROR: 'POST_FILE_ERROR' as 'POST_FILE_ERROR'
+        POST_FILE_ERROR: 'POST_FILE_ERROR' as 'POST_FILE_ERROR',
+        SET_FILE_LINK: 'SET_FILE_LINK' as 'SET_FILE_LINK'
     };
 
     export interface PostFile extends BaseAction {
@@ -16,11 +17,16 @@ export namespace FileActions {
 
     export interface PostFileSuccess extends BaseAction {
         type: 'POST_FILE_SUCCESS',
-        payload: { link: string }
+        payload: {}
     };
 
     export interface PostFileError extends BaseAction {
         type: 'POST_FILE_ERROR',
         payload: { reason: string }
     };
+
+    export interface SetFileLink extends BaseAction {
+        type: 'SET_FILE_LINK',
+        payload: { link: string }
+    }
 }

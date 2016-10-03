@@ -26,7 +26,7 @@ function handlePostFileSuccess(next: Next, fileName: string): (response: Respons
             throw new Error('Something went wrong.');
         }
 
-        return next(Creators.File.reportSuccessfulPost(`${API_BASE}/download/${fileName}`));
+        return next(Creators.File.reportSuccessfulPost(`${API_BASE}/${fileName}`));
     }
 }
 

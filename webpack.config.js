@@ -9,7 +9,9 @@ const config = {
 		vendor: [
 			"react",
 			"redux",
-			'whatwg-fetch'
+			'whatwg-fetch',
+			'react-mdl/extra/material.css',
+			'react-mdl/extra/material.js'
 		],
 		app: [
 			path.resolve('./src/index.tsx')
@@ -28,16 +30,19 @@ const config = {
 		new webpack.HotModuleReplacementPlugin()
 	],
     module: {
-        loaders: [{
-			test: /\.tsx?$/,
-			loaders: [
-				'babel',
-				'ts-loader'
-			]
-		}]
+        loaders: [
+			{
+				test: /\.tsx?$/,
+				loaders: [
+					'babel',
+					'ts-loader'
+				],
+			},
+			{ test: /\.css$/, loader: "style-loader!css-loader" },
+		]
     },
 	resolve: {
-		extensions: ['', '.ts', '.tsx', '.js', '.json']
+		extensions: ['', '.ts', '.tsx', '.js', '.json', 'css']
 	},
     devServer: {
 		contentBase: path.resolve('./dist'),

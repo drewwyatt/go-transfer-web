@@ -8,10 +8,10 @@ export namespace File {
         };
     }
 
-    export function reportSuccessfulPost(link: string): FileActions.PostFileSuccess {
+    export function reportSuccessfulPost(): FileActions.PostFileSuccess {
         return {
             type: FileActions.ActionType.POST_FILE_SUCCESS,
-            payload: { link }
+            payload: {}
         };
     } 
 
@@ -19,6 +19,13 @@ export namespace File {
         return {
             type: FileActions.ActionType.POST_FILE_ERROR,
             payload: { reason }
+        };
+    }
+
+    export function setFileLink(link: string): FileActions.SetFileLink {
+        return {
+            type: FileActions.ActionType.SET_FILE_LINK,
+            payload: { link }
         };
     }
 }

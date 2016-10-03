@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
 import { IFetchStatus, FetchStatus, IAppState } from '../models';
+import { Spinner } from 'react-mdl';
 
 export interface HomeProps {
     fileStatus: IFetchStatus;
@@ -16,20 +17,38 @@ class Home extends React.Component<HomeProps, void> {
         return (
             <section>
                 <input type='file' onChange={this._onFileChange.bind(this)} />
-                <br /><br /><br />
-                <fieldset>
-                    <legend>Upload Status</legend>
-                    { fileStatus }
-                </fieldset>
-                <br />
+
+                {this._spinnerIfUploading()}
+                {this._linkIfExists()}
+                <br /><br />
+                {this._errorMessageIfExists()}
+            </section>
+        );
+    }
+
+    private _spinnerIfUploading(): JSX.Element {
+        const { fileStatus } = this.props;
+        if (fileStatus === FetchStatus.FETCHING) {
+            return (
+                <div>
+                    <br />
+                    <Spinner />
+                    <br />
+                </div>
+            );
+        }
+    }
+
+    private _errorMessageIfExists(): JSX.Element {
+        const { errorReason } = this.props;
+        if (errorReason && errorReason.trim()) {
+            return (
                 <fieldset>
                     <legend>Error Messages</legend>
                     { errorReason }
                 </fieldset>
-                <br /><br />
-                {this._linkIfExists()}
-            </section>
-        );
+            );
+        }
     }
 
     private _linkIfExists(): JSX.Element {

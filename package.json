@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "react-mdl": "^1.7.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",
     "react-router-redux": "^4.0.6",
@@ -24,6 +25,7 @@
     "@types/node": "^6.0.41",
     "@types/react": "^0.14.37",
     "@types/react-dom": "^0.14.17",
+    "@types/react-mdl": "^1.7.17",
     "@types/react-redux": "^4.4.32",
     "@types/react-router": "^2.0.36",
     "@types/react-router-redux": "^4.0.33",

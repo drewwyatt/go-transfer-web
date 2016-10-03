@@ -6,6 +6,7 @@ import { IFetchStatus, FetchStatus, IAppState } from '../models';
 export interface HomeProps {
     fileStatus: IFetchStatus;
     errorReason: string;
+    fileLink: string;
     postFile(file: File): void;
 }
 
@@ -25,8 +26,17 @@ class Home extends React.Component<HomeProps, void> {
                     <legend>Error Messages</legend>
                     { errorReason }
                 </fieldset>
+                <br /><br />
+                {this._linkIfExists()}
             </section>
         );
+    }
+
+    private _linkIfExists(): JSX.Element {
+        const { fileLink } = this.props;
+        if (fileLink && fileLink.trim()) {
+            return <a href={fileLink} target='_blank'>DOWNLOAD THE FILE</a>;
+        }
     }
 
     private _onFileChange(event: Event): void {
@@ -46,7 +56,8 @@ class Home extends React.Component<HomeProps, void> {
 function mapStateToProps(state: IAppState): any { // TODO
     return {
         fileStatus: state.file.fetchStatus,
-        errorReason: state.file.errorReason
+        errorReason: state.file.errorReason,
+        fileLink: state.file.link
     };
 }
 

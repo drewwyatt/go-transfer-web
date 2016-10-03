@@ -8,10 +8,10 @@ export namespace File {
         };
     }
 
-    export function reportSuccessfulPost(): FileActions.PostFileSuccess {
+    export function reportSuccessfulPost(link: string): FileActions.PostFileSuccess {
         return {
             type: FileActions.ActionType.POST_FILE_SUCCESS,
-            payload: {}
+            payload: { link }
         };
     } 
 

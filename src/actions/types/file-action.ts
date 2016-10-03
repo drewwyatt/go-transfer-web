@@ -16,7 +16,7 @@ export namespace FileActions {
 
     export interface PostFileSuccess extends BaseAction {
         type: 'POST_FILE_SUCCESS',
-        payload: {}
+        payload: { link: string }
     };
 
     export interface PostFileError extends BaseAction {

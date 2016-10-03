@@ -10,22 +10,23 @@ const { FileActions } = Types;
 
 type Next = (action: Action) => any; // TODO
 
-function postFile(file: File): Promise<Response> {
-    const name = file.name.split('.');
-    const extension = name[name.length - 1];
-    return fetch(`https://go-transfer.herokuapp.com/${new Date().getMilliseconds().toString()}.${extension}`, {
+const API_BASE = 'https://go-transfer.herokuapp.com';
+
+function postFile(file: File, fileName: string): Promise<Response> {
+
+    return fetch(`${API_BASE}/${fileName}`, {
         method: 'POST',
         body: file
-    })
+    });
 }
 
-function handlePostFileSuccess(next: Next): (response: Response) => Next {
+function handlePostFileSuccess(next: Next, fileName: string): (response: Response) => Next {
     return function (response: Response) {
-        if (response.status === 200) {
+        if (response.status !== 200) {
             throw new Error('Something went wrong.');
         }
 
-        return next(Creators.File.reportSuccessfulPost());
+        return next(Creators.File.reportSuccessfulPost(`${API_BASE}/download/${fileName}`));
     }
 }
 
@@ -37,11 +38,19 @@ function handlePostFileError(next: Next): (error: Error) => Next {
     };
 }
 
+function generateFileName(file: File): string {
+    const name = file.name.split('.');
+    const extension = name[name.length - 1];
+    return `${new Date().getMilliseconds().toString()}.${extension}`;
+}
+
 export default (store: Store<any>) => (next: Next) => (action: Action) => {
     switch (action.type) {
         case FileActions.ActionType.POST_FILE:
-            return postFile((action as Types.FileActions.PostFile).payload.file)
-                .then(handlePostFileSuccess(next))
+            const file = (action as Types.FileActions.PostFile).payload.file;
+            const fileName = generateFileName(file);
+            return postFile(file, fileName)
+                .then(handlePostFileSuccess(next, fileName))
                 .catch(handlePostFileError(next));
         default:
             return next(action);

@@ -7,7 +7,7 @@ import { Spinner } from 'react-mdl';
 export interface HomeProps {
     fileStatus: IFetchStatus;
     errorReason: string;
-    fileLink: string;
+    fileName: string;
     postFile(file: File): void;
 }
 
@@ -52,9 +52,9 @@ class Home extends React.Component<HomeProps, void> {
     }
 
     private _linkIfExists(): JSX.Element {
-        const { fileLink } = this.props;
-        if (fileLink && fileLink.trim()) {
-            return <a href={fileLink} target='_blank'>DOWNLOAD THE FILE</a>;
+        const { fileName, fileStatus } = this.props;
+        if (fileName && fileName.trim() && (fileStatus === FetchStatus.FETCHING || fileStatus === FetchStatus.SUCCESS)) {
+            return <a href={`https://go-transfer.herokuapp.com/${fileName}`} target='_blank'>DOWNLOAD THE FILE</a>;
         }
     }
 
@@ -72,12 +72,26 @@ class Home extends React.Component<HomeProps, void> {
     }
 }
 
+function generateFileName(file: File): string {
+    const name = file.name.split('.');
+    const extension = name[name.length - 1];
+    return `${new Date().getMilliseconds().toString()}.${extension}`;
+}
+
 function mapStateToProps(state: IAppState): any { // TODO
     return {
         fileStatus: state.file.fetchStatus,
         errorReason: state.file.errorReason,
-        fileLink: state.file.link
+        fileName: state.file.name
     };
 }
 
-export default connect(mapStateToProps, { postFile: Creators.File.post })(Home);
+function mapDispatchToProps(dispatch): any { // TODO
+    return {
+        postFile: function (file: File) {
+            dispatch(Creators.File.post(file, generateFileName(file)));
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -20,13 +20,13 @@ function postFile(file: File, fileName: string): Promise<Response> {
     });
 }
 
-function handlePostFileSuccess(next: Next, fileName: string): (response: Response) => Next {
+function handlePostFileSuccess(next: Next): (response: Response) => Next {
     return function (response: Response) {
         if (response.status !== 200) {
             throw new Error('Something went wrong.');
         }
 
-        return next(Creators.File.reportSuccessfulPost(`${API_BASE}/${fileName}`));
+        return next(Creators.File.reportSuccessfulPost());
     }
 }
 
@@ -38,21 +38,14 @@ function handlePostFileError(next: Next): (error: Error) => Next {
     };
 }
 
-function generateFileName(file: File): string {
-    const name = file.name.split('.');
-    const extension = name[name.length - 1];
-    return `${new Date().getMilliseconds().toString()}.${extension}`;
-}
-
 export default (store: Store<any>) => (next: Next) => (action: Action) => {
+    next(action);
     switch (action.type) {
         case FileActions.ActionType.POST_FILE:
-            const file = (action as Types.FileActions.PostFile).payload.file;
-            const fileName = generateFileName(file);
-            return postFile(file, fileName)
-                .then(handlePostFileSuccess(next, fileName))
+            const { file, name } = (action as Types.FileActions.PostFile).payload;
+
+            return postFile(file, name)
+                .then(handlePostFileSuccess(next))
                 .catch(handlePostFileError(next));
-        default:
-            return next(action);
     }
 }

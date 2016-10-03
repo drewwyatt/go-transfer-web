@@ -7,12 +7,11 @@ export namespace FileActions {
         POST_FILE: 'POST_FILE' as 'POST_FILE',
         POST_FILE_SUCCESS: 'POST_FILE_SUCCESS' as 'POST_FILE_SUCCESS',
         POST_FILE_ERROR: 'POST_FILE_ERROR' as 'POST_FILE_ERROR',
-        SET_FILE_LINK: 'SET_FILE_LINK' as 'SET_FILE_LINK'
     };
 
     export interface PostFile extends BaseAction {
         type: 'POST_FILE';
-        payload: { file: File };
+        payload: { file: File, name: string };
     };
 
     export interface PostFileSuccess extends BaseAction {
@@ -24,9 +23,4 @@ export namespace FileActions {
         type: 'POST_FILE_ERROR',
         payload: { reason: string }
     };
-
-    export interface SetFileLink extends BaseAction {
-        type: 'SET_FILE_LINK',
-        payload: { link: string }
-    }
 }

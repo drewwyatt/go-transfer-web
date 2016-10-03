@@ -6,13 +6,13 @@ const { FileActions } = Types;
 export interface FileState {
     fetchStatus: IFetchStatus;
     errorReason: string;
-    link: string;
+    name: string;
 }
 
 const DEFAULT_STATE: FileState = {
     fetchStatus: FetchStatus.NOT_FETCHED,
     errorReason: '',
-    link: ''
+    name: ''
 };
 
 export default function fileReducer(state: FileState = DEFAULT_STATE, action: Types.FileAction): FileState {
@@ -21,12 +21,11 @@ export default function fileReducer(state: FileState = DEFAULT_STATE, action: Ty
             return Object.assign({}, state, {
                 fetchStatus: FetchStatus.FETCHING,
                 errorReason: '',
-                link: ''
+                name: action.payload.name
             });
         case FileActions.ActionType.POST_FILE_SUCCESS:
             return Object.assign({}, state, {
-                fetchStatus: FetchStatus.SUCCESS,
-                link: action.payload.link
+                fetchStatus: FetchStatus.SUCCESS
             });
         case FileActions.ActionType.POST_FILE_ERROR:
             return Object.assign({}, state, {

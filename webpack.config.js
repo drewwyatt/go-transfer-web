@@ -8,7 +8,8 @@ const config = {
     entry: {
 		vendor: [
 			"react",
-			"redux"
+			"redux",
+			'whatwg-fetch'
 		],
 		app: [
 			path.resolve('./src/index.tsx')

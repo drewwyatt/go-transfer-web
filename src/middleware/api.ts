@@ -1,3 +1,8 @@
+/// <reference path="fetch.d.ts" />
+/**********************************************************************************************************
+ * ^ it's weird that I'm having to do that, but it's the only way I can prevent errors in the browser -_- *
+ **********************************************************************************************************/
+
 import { Store, Action } from 'redux';
 import { Types, Creators } from '../actions';
 

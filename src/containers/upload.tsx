@@ -2,16 +2,16 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
 import { IFetchStatus, FetchStatus, IAppState } from '../models';
-import { Spinner } from 'react-mdl';
+import { Spinner, Textfield } from 'react-mdl';
 
-export interface HomeProps {
+export interface UploadProps {
     fileStatus: IFetchStatus;
     errorReason: string;
     fileName: string;
     postFile(file: File): void;
 }
 
-class Home extends React.Component<HomeProps, void> {
+class Upload extends React.Component<UploadProps, void> {
     render(): JSX.Element {
         const { fileStatus, errorReason } = this.props;        
         return (
@@ -54,7 +54,11 @@ class Home extends React.Component<HomeProps, void> {
     private _linkIfExists(): JSX.Element {
         const { fileName, fileStatus } = this.props;
         if (fileName && fileName.trim() && (fileStatus === FetchStatus.FETCHING || fileStatus === FetchStatus.SUCCESS)) {
-            return <a href={`https://go-transfer.herokuapp.com/${fileName}`} target='_blank'>DOWNLOAD THE FILE</a>;
+            return (
+                <div>
+                    <Textfield label='Your Link' floatingLabel value={`http:localhost:3000/download/${fileName}`} />
+                </div>
+            );
         }
     }
 
@@ -94,4 +98,4 @@ function mapDispatchToProps(dispatch): any { // TODO
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Upload);

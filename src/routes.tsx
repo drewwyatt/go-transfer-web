@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Route } from 'react-router';
-import { App, Home } from './containers';
+import { App, Download, Upload } from './containers';
 
 export default (
     <Route path='/' component={App}>
-        <Route path='home' component={Home} />
+        <Route path='upload' component={Upload} />
+        <Route path='download/:fileName' component={Download} />
     </Route>
 );

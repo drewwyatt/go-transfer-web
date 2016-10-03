@@ -1,6 +1,9 @@
-import Home from './home';
 import App from './app';
+import Download from './download';
+import Upload from './upload';
+
 export {
     App,
-    Home
+    Download,
+    Upload
 };

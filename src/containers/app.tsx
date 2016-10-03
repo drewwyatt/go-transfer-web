@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
-import Home from './home';
+import Upload from './upload';
 
 export interface AppProps {
 }
@@ -12,7 +12,7 @@ class App extends React.Component<AppProps, void> {
         return (
             <section>
                 <h1>Go Transfer</h1>
-                { children || <Home /> }
+                { children || <Upload /> }
             </section>
         );
     }

@@ -12,7 +12,6 @@ class App extends React.Component<AppProps, void> {
         return (
             <section>
                 <h1>Go Transfer</h1>
-                <p>this is the app component</p>
                 { children || <Home /> }
             </section>
         );

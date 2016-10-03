@@ -1,16 +1,30 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
+import { IFetchStatus, FetchStatus } from '../models';
 
 export interface HomeProps {
+    fileStatus: IFetchStatus;
+    errorReason: string;
     postFile(file: File): void;
 }
 
 class Home extends React.Component<HomeProps, void> {
     render(): JSX.Element {
+        const { fileStatus, errorReason } = this.props;        
         return (
             <section>
                 <input type='file' onChange={this._onFileChange.bind(this)} />
+                <br /><br /><br />
+                <fieldset>
+                    <legend>Upload Status</legend>
+                    { fileStatus }
+                </fieldset>
+                <br />
+                <fieldset>
+                    <legend>Error Messages</legend>
+                    { errorReason }
+                </fieldset>
             </section>
         );
     }
@@ -29,4 +43,11 @@ class Home extends React.Component<HomeProps, void> {
     }
 }
 
-export default connect(() => ({}), { postFile: Creators.File.post })(Home);
+function mapStateToProps(state) {
+    return {
+        fileStatus: state.file.fetchStatus,
+        errorReason: state.file.errorReason
+    };
+}
+
+export default connect(mapStateToProps, { postFile: Creators.File.post })(Home);

@@ -7,4 +7,18 @@ export namespace File {
             payload: { file }
         };
     }
+
+    export function reportSuccessfulPost(): FileActions.PostFileSuccess {
+        return {
+            type: FileActions.ActionType.POST_FILE_SUCCESS,
+            payload: {}
+        };
+    } 
+
+    export function reportFailedPost(reason: string): FileActions.PostFileError {
+        return {
+            type: FileActions.ActionType.POST_FILE_ERROR,
+            payload: { reason }
+        };
+    }
 }

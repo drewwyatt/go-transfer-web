@@ -1,7 +1,9 @@
 import { Store, Action } from 'redux';
-import { Types, BaseAction } from '../actions';
+import { Types, Creators } from '../actions';
 
 const { FileActions } = Types;
+
+type Next = (action: Action) => any; // TODO
 
 function postFile(file: File): Promise<Response> {
     const name = file.name.split('.');
@@ -12,11 +14,30 @@ function postFile(file: File): Promise<Response> {
     })
 }
 
-export default (store: Store<any>) => (next: (action: Action) => void) => (action: Action) => {
-    let actionableAction: Action;
+function handlePostFileSuccess(next: Next): (response: Response) => Next {
+    return function (response: Response) {
+        if (response.status === 200) {
+            throw new Error('Something went wrong.');
+        }
+
+        return next(Creators.File.reportSuccessfulPost());
+    }
+}
+
+function handlePostFileError(next: Next): (error: Error) => Next {
+    return function(error: Error) {
+        console.warn('middleware.api.handlePostFileError');
+        console.error(error);
+        return next(Creators.File.reportFailedPost(error.message));
+    };
+}
+
+export default (store: Store<any>) => (next: Next) => (action: Action) => {
     switch (action.type) {
         case FileActions.ActionType.POST_FILE:
-            actionableAction = action as Types.FileAction;
+            return postFile((action as Types.FileActions.PostFile).payload.file)
+                .then(handlePostFileSuccess(next))
+                .catch(handlePostFileError(next));
         default:
             return next(action);
     }

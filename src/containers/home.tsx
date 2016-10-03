@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
-import { IFetchStatus, FetchStatus } from '../models';
+import { IFetchStatus, FetchStatus, IAppState } from '../models';
 
 export interface HomeProps {
     fileStatus: IFetchStatus;
@@ -43,7 +43,7 @@ class Home extends React.Component<HomeProps, void> {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state: IAppState): any { // TODO
     return {
         fileStatus: state.file.fetchStatus,
         errorReason: state.file.errorReason

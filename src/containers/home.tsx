@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Creators } from '../actions';
 
 export interface HomeProps {
-    fileName: string;
-    link: string;
+    postFile(file: File): void;
 }
 
 class Home extends React.Component<HomeProps, void> {
@@ -16,9 +16,11 @@ class Home extends React.Component<HomeProps, void> {
     }
 
     private _onFileChange(event: Event): void {
+        const { postFile } = this.props;
         event.preventDefault();
         const input = event.target as HTMLInputElement;
         if (this._filesExist(input)) {
+            postFile(input.files[0]);
         }
     }
 
@@ -27,4 +29,4 @@ class Home extends React.Component<HomeProps, void> {
     }
 }
 
-export default connect(() => ({}))(Home);
+export default connect(() => ({}), { postFile: Creators.File.post })(Home);

@@ -19,12 +19,6 @@ class Home extends React.Component<HomeProps, void> {
         event.preventDefault();
         const input = event.target as HTMLInputElement;
         if (this._filesExist(input)) {
-            const file = input.files[0];
-            console.log(file);
-            fetch(`https://go-transfer.herokuapp.com/${new Date().getMilliseconds().toString()}.txt`, {
-                method: 'POST',
-                body: file
-            }).then(response => console.log(response));
         }
     }
 

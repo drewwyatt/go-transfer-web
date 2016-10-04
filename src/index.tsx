@@ -1,3 +1,5 @@
+/// <refrence path="../typings/react-file-drop" />
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { browserHistory } from 'react-router';

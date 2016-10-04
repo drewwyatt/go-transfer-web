@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Creators } from '../actions';
 import { IFetchStatus, FetchStatus, IAppState } from '../models';
 import { Spinner, Textfield } from 'react-mdl';
+import { FileDrop } from '../components/file-drop';
 
 export interface UploadProps {
     fileStatus: IFetchStatus;
@@ -18,6 +19,8 @@ class Upload extends React.Component<UploadProps, void> {
             <section>
                 <input type='file' onChange={this._onFileChange.bind(this)} />
 
+                <FileDrop />
+
                 {this._spinnerIfUploading()}
                 {this._linkIfExists()}
                 <br /><br />
@@ -25,6 +28,7 @@ class Upload extends React.Component<UploadProps, void> {
             </section>
         );
     }
+
 
     private _spinnerIfUploading(): JSX.Element {
         const { fileStatus } = this.props;

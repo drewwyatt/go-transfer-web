@@ -1,8 +1,8 @@
-const path = require('path');
-const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const config = {
+var config = {
 	debug: true,
 	devtool: 'eval-cheap-source-map',
     entry: {
@@ -47,8 +47,17 @@ const config = {
     devServer: {
 		contentBase: path.resolve('./dist'),
 		compress: true,
-		quiet: true,
-		historyApiFallback: true,
+        historyApiFallback: {
+            rewrites: [
+                {
+                    from: /^\/download\/.*$/,
+                    to: function() {
+                        console.log('resolving!');
+                        return 'index.html';
+                    }
+                }
+            ]
+        },
 		host: "0.0.0.0",
 		hot: true,
 		inline: true,

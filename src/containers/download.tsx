@@ -18,7 +18,7 @@ class Download extends React.Component<DownloadProps, void> {
     private _linkIfExists(): JSX.Element {
         const { fileName } = this.props;
         if (fileName && fileName.trim()) {
-            return <a href={`https://go-transfer.herokuapp.com/${fileName}`} target='_blank'>DOWNLOAD THE FILE</a>;
+            return <a href={`https://go-transfer.herokuapp.com/${fileName}`} download={fileName}>DOWNLOAD THE FILE</a>;
         }
 
         return <p>uh oh... you shouldn't be seeing this.</p>;

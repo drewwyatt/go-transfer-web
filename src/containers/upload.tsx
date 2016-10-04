@@ -17,9 +17,7 @@ class Upload extends React.Component<UploadProps, void> {
         const { fileStatus, errorReason } = this.props;        
         return (
             <section>
-                <input type='file' onChange={this._onFileChange.bind(this)} />
-
-                <FileDrop />
+                <FileDrop onFile={this._onFile.bind(this)} />
 
                 {this._spinnerIfUploading()}
                 {this._linkIfExists()}
@@ -66,17 +64,10 @@ class Upload extends React.Component<UploadProps, void> {
         }
     }
 
-    private _onFileChange(event: Event): void {
-        const { postFile } = this.props;
-        event.preventDefault();
-        const input = event.target as HTMLInputElement;
-        if (this._filesExist(input)) {
-            postFile(input.files[0]);
+    private _onFile(file: File): void {
+        if (file) {
+            this.props.postFile(file);
         }
-    }
-
-    private _filesExist(input: HTMLInputElement): boolean {
-        return !!(input && input.files && input.files.length);
     }
 }
 

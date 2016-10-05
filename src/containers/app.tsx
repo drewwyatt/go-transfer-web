@@ -9,9 +9,12 @@ export interface AppProps {
 class App extends React.Component<AppProps, void> {
     render(): JSX.Element {
         const { children } = this.props;
+        const styles = {
+            textAlign: 'center'
+        };
         return (
-            <section>
-                <h1>Go Transfer</h1>
+            <section style={styles}>
+                <h1>Drop Your File</h1>
                 { children || <Upload /> }
             </section>
         );

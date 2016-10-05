@@ -29,17 +29,52 @@ export class FileDrop extends React.Component<FileDropProps, FileDropState> {
     }
 
     render(): JSX.Element {
-        const styles = {border: '1px solid black', width: 600, color: 'black', padding: 20};
+        const containerStyles = {
+            display: 'inline-block',
+            width: '80%',
+            maxWidth: '400px',
+            color: 'white'
+        };
+
+        const circleStyles = {
+            display: 'inline-block',
+            background: 'rgb(63,81,181)',
+            width: '100%',
+            borderRadius: '50%',
+            padding: '50% 0',
+            position: 'relative',
+            whiteSpace: 'nowrap',
+            fontSize: '30px'
+        };
+
+        const iStyles = {
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontSize: '80px'
+        }
+
         return (
-            <div style={styles} onDragOver={this._handleOnDragOver.bind(this)} onDragEnter={this._handleDragEnter.bind(this)} onDrop={this._handleDrop.bind(this)}>
-                {this._getText()}
+            <div style={containerStyles} onDragOver={this._handleOnDragOver.bind(this)} onDragEnter={this._handleDragEnter.bind(this)} onDrop={this._handleDrop.bind(this)}>
+                <div style={circleStyles}>
+                    <i style={iStyles} className="icon material-icons">{this._getIcon()}</i>
+                </div>
             </div>
         );
     }
 
-    private _getText(): string {
+    private _getIcon(): string {
         const { dropState } = this.state;
-        return dropState;
+        switch (dropState) {
+            case DropState.DRAGGING:
+                return 'backup';
+            case DropState.DROPPED:
+                return 'done';
+            case DropState.WAITING:
+            default:
+                return 'add_box';
+        }
     }
 
     private _setDropState(dropState: IDropState): void {

@@ -2,8 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
 import { IFetchStatus, FetchStatus, IAppState } from '../models';
-import { Spinner, Textfield } from 'react-mdl';
+import { Spinner, Textfield, Button } from 'react-mdl';
 import { FileDrop } from '../components/file-drop';
+import { ComboField } from '../components/combo-field';
 
 export interface UploadProps {
     fileStatus: IFetchStatus;
@@ -14,17 +15,34 @@ export interface UploadProps {
 
 class Upload extends React.Component<UploadProps, void> {
     render(): JSX.Element {
-        const { fileStatus, errorReason } = this.props;        
+        const { fileStatus, errorReason, fileName } = this.props;      
+
         return (
             <section>
-                <FileDrop onFile={this._onFile.bind(this)} />
+                <div className='mdl-grid'>
+                    <div className='mdl-cell mdl-cell--12-col'>  
+                        {this._textBoxIfFileName(fileName)}
+                    </div>
+                </div>
+               <div className='mdl-grid'>
+                    <div className='mdl-cell mdl-cell--12-col'>  
+                         <FileDrop onFile={this._onFile.bind(this)} />
+                    </div>
+                </div>
 
                 {this._spinnerIfUploading()}
                 {this._linkIfExists()}
                 <br /><br />
+                <Textfield label='Your Link' value={`http:localhost:3000/download/`} />
                 {this._errorMessageIfExists()}
             </section>
         );
+    }
+
+    private _textBoxIfFileName(fileName: string): JSX.Element {
+        if (fileName) {
+            return <ComboField text={`http:localhost:3000/download/${fileName}`} />;
+        }
     }
 
 
@@ -58,7 +76,6 @@ class Upload extends React.Component<UploadProps, void> {
         if (fileName && fileName.trim() && (fileStatus === FetchStatus.FETCHING || fileStatus === FetchStatus.SUCCESS)) {
             return (
                 <div>
-                    <Textfield label='Your Link' floatingLabel value={`http:localhost:3000/download/${fileName}`} />
                 </div>
             );
         }

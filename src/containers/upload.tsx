@@ -17,11 +17,23 @@ class Upload extends React.Component<UploadProps, void> {
     render(): JSX.Element {
         const { fileStatus, errorReason, fileName } = this.props;      
 
+        const comboWrapperStyles = {
+            height: (fileName && fileName.trim()) ? '36px' : '0',
+            overflow: 'hidden',
+            transition: 'height 500ms ease-out'
+        };
+
+        const comboStyles = {
+            opacity: (fileName && fileName.trim()) ? 1 : 0,
+            transition: 'opacity 1000ms ease-out',
+            transitionDelay: '400ms'
+        };
+
         return (
             <section>
                 <div className='mdl-grid'>
-                    <div className='mdl-cell mdl-cell--12-col'>  
-                        {this._textBoxIfFileName(fileName)}
+                    <div className='mdl-cell mdl-cell--12-col' style={comboWrapperStyles}> 
+                        <ComboField styles={comboStyles} text={`http://localhost:3000/download/${fileName}`} /> 
                     </div>
                 </div>
                <div className='mdl-grid'>
@@ -31,18 +43,9 @@ class Upload extends React.Component<UploadProps, void> {
                 </div>
 
                 {this._spinnerIfUploading()}
-                {this._linkIfExists()}
-                <br /><br />
-                <Textfield label='Your Link' value={`http:localhost:3000/download/`} />
                 {this._errorMessageIfExists()}
             </section>
         );
-    }
-
-    private _textBoxIfFileName(fileName: string): JSX.Element {
-        if (fileName) {
-            return <ComboField text={`http:localhost:3000/download/${fileName}`} />;
-        }
     }
 
 

@@ -3,10 +3,11 @@ import { Button } from 'react-mdl';
 
 export interface ComboFieldProps {
     text: string;
+    styles?: React.CSSProperties;
 }
 
-export function ComboField({ text }: ComboFieldProps): JSX.Element {
-    const styles = {
+export function ComboField({ text, styles }: ComboFieldProps): JSX.Element {
+    const wrapStyles = {
         height: '36px',
         boxSizing: 'border-box',
         position: 'relative',
@@ -31,7 +32,7 @@ export function ComboField({ text }: ComboFieldProps): JSX.Element {
     };
 
     return (
-        <div style={styles}>
+        <div style={Object.assign({}, wrapStyles, styles || {})}>
             <input style={textStyles} type='text' value={text} />
             <Button raised colored ripple style={buttonStyle}>COPY</Button>
         </div>

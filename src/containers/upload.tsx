@@ -33,7 +33,7 @@ class Upload extends React.Component<UploadProps, void> {
             <section>
                 <div className='mdl-grid'>
                     <div className='mdl-cell mdl-cell--12-col' style={comboWrapperStyles}> 
-                        <ComboField styles={comboStyles} text={`http://localhost:3000/download/${fileName}`} /> 
+                        <ComboField styles={comboStyles} text={`http://go-transfer.s3-website-us-west-2.amazonaws.com/download/${fileName}`} /> 
                     </div>
                 </div>
                <div className='mdl-grid'>

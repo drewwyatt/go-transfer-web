@@ -33,18 +33,20 @@ export class FileDrop extends React.Component<FileDropProps, FileDropState> {
             display: 'inline-block',
             width: '80%',
             maxWidth: '400px',
-            color: 'white'
         };
 
         const circleStyles = {
             display: 'inline-block',
-            background: 'rgb(63,81,181)',
+            backgroundColor: this._getBG(),  //'rgb(63,81,181)',
+            color: this._getColor(),
             width: '100%',
             borderRadius: '50%',
             padding: '50% 0',
             position: 'relative',
             whiteSpace: 'nowrap',
-            fontSize: '30px'
+            fontSize: '30px',
+            boxShadow: '0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24)',
+            transition: 'background-color 500ms linear'
         };
 
         const iStyles = {
@@ -56,12 +58,39 @@ export class FileDrop extends React.Component<FileDropProps, FileDropState> {
         }
 
         return (
-            <div style={containerStyles} onDragOver={this._handleOnDragOver.bind(this)} onDragEnter={this._handleDragEnter.bind(this)} onDrop={this._handleDrop.bind(this)}>
+            <div style={containerStyles} onDragLeave={this._handleDragLeave.bind(this)} onDragOver={this._handleOnDragOver.bind(this)} onDragEnter={this._handleDragEnter.bind(this)} onDrop={this._handleDrop.bind(this)}>
                 <div style={circleStyles}>
                     <i style={iStyles} className="icon material-icons">{this._getIcon()}</i>
                 </div>
             </div>
         );
+    }
+
+    // #ff4081
+
+    private _getBG(): string {
+        const { dropState } = this.state;
+        switch (dropState) {
+            case DropState.DRAGGING:
+                return '#ff4081';
+            case DropState.DROPPED:
+                return 'rgb(63,81,181)';
+            case DropState.WAITING:
+            default:
+                return 'rgba(158,158,158,.2)';
+        }
+    }
+
+     private _getColor(): string {
+        const { dropState } = this.state;
+        switch (dropState) {
+            case DropState.DRAGGING:
+            case DropState.DROPPED:
+                return '#fff';
+            case DropState.WAITING:
+            default:
+                return '#000';
+        }
     }
 
     private _getIcon(): string {
@@ -73,7 +102,7 @@ export class FileDrop extends React.Component<FileDropProps, FileDropState> {
                 return 'done';
             case DropState.WAITING:
             default:
-                return 'add_box';
+                return 'move_to_inbox';
         }
     }
 
@@ -81,8 +110,16 @@ export class FileDrop extends React.Component<FileDropProps, FileDropState> {
         this.setState(Object.assign({}, this.state, { dropState }));
     }
 
+    private _handleDragLeave(e: Event): void {
+        // e.preventDefault();
+        // e.stopPropagation();
+        this._setDropState(DropState.WAITING);
+    }
+
     private _handleOnDragOver(e: Event): void {
         e.preventDefault();
+        e.stopPropagation();
+        this._setDropState(DropState.DRAGGING);
     }
 
     private _handleDragEnter(e: Event): void {

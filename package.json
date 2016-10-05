@@ -12,7 +12,6 @@
   "dependencies": {
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-file-drop": "^0.1.8",
     "react-mdl": "^1.7.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.8.1",

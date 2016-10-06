@@ -39,10 +39,11 @@ var config = {
 				],
 			},
 			{ test: /\.css$/, loader: "style-loader!css-loader" },
+            { test: /\.txt/, loader: 'raw-loader' }
 		]
     },
 	resolve: {
-		extensions: ['', '.ts', '.tsx', '.js', '.json', 'css']
+		extensions: ['', '.ts', '.tsx', '.js', '.json', 'css', 'txt']
 	},
     devServer: {
 		contentBase: path.resolve('./dist'),

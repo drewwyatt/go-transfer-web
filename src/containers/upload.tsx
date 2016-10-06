@@ -5,6 +5,7 @@ import { IFetchStatus, FetchStatus, IAppState } from '../models';
 import { Spinner, Textfield, Button } from 'react-mdl';
 import { FileDrop } from '../components/file-drop';
 import { ComboField } from '../components/combo-field';
+import { FileName } from '../components/file-name';
 
 export interface UploadProps {
     fileStatus: IFetchStatus;
@@ -94,7 +95,7 @@ class Upload extends React.Component<UploadProps, void> {
 function generateFileName(file: File): string {
     const name = file.name.split('.');
     const extension = name[name.length - 1];
-    return `${new Date().getMilliseconds().toString()}.${extension}`;
+    return FileName.generate(extension);
 }
 
 function mapStateToProps(state: IAppState): any { // TODO

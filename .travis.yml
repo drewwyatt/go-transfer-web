@@ -2,11 +2,11 @@ language: node_js
 node_js:
 - '6'
 - '6.1'
+before_script:
+- npm install -g webpack
+script:
+- webpack  
 deploy:
-  before_script:
-  - npm install -g webpack
-  script:
-  - webpack  
   provider: s3
   access_key_id: AKIAIBIKZAJYXFLKXXEA
   secret_access_key:

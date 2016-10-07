@@ -12,7 +12,7 @@ deploy:
   secret_access_key:
     secure: ca1vx1goGi6mN+Xl2X7Wkdy8P0V3zjZztrAV8wDWTajx23wevZ6Lg5/A+oFJT47dXTCdV2l3vGwLW3c/080eDxJTgrVv+sYZXt65wnW52SMnIqGHk0XXPmEaTUkKKCWdL4asmo/fUk2Pmwa9nIWKxQ+y5/6xEuOj0GH1C6ymhliIxVYbIAnB3K77D0ZXpXCv4Z+2izeN5JnqPyM0YJLjGocxFLK7ArHS1waucuSyqkrSBq/Guo7FlB6xajSk158RtKcekivWfH5Bthb3MvKOAeBVqnIKpNQAfdnlBEfJxS7QEcBQb3u3JHEzlieHv/SA2P7Gtr9beVBaVMw7t4N4yPg9/mnWs3OBgd/fUpwPUzqnr04n+OlJGn83hVWq/y+ifsV7zXPidhkwtfZhdagrb8cGZintyIfn4FmGO1Feyp0Owz6P42RPTPs3u/eCqlaGLPUEzyCneJGCkLjENWIPRIACilme6hGeFNbgJNsA1cUtfGCxgS/wmNyFsV3kcMut/jmfqFgu9ye32HvgG6Qamdy2BYKEPWOqTuCCzBOzZ9CO68vIkfXk6A2J6cvgFVi1CZ8AaJW9mnO2hl0UZKsZdNTe2gIx8pIO+wy7CgLaYmcQolKXFve016EHr7ntV3OF9xQlFR9DjLSnZ7nkNcUEe9ezd28LA9x51g/nvT7Tncs=
   bucket: go-transfer
-  local-dir: dist
+  local_dir: dist
   acl: 'public_read'
   on:
     repo: drewwyatt/go-transfer-web

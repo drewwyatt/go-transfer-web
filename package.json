@@ -4,8 +4,9 @@
   "description": "Go Transfer",
   "scripts": {
     "start": "webpack-dev-server --progress --inline",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "test": "npm run build-tests && jest",
+    "build": "webpack",
+    "build-tests": "webpack --config webpack.test.config.js"
   },
   "author": "Drew Wyatt <drew.j.wyatt@gmail.com>",
   "license": "MIT",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^2.22.3",
+    "@types/jest": "^15.1.32",
     "@types/node": "^6.0.41",
     "@types/react": "^0.14.37",
     "@types/react-dom": "^0.14.17",
@@ -41,6 +43,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "css-loader": "^0.25.0",
     "html-webpack-plugin": "^2.22.0",
+    "jest": "^16.0.1",
     "raw-loader": "^0.5.1",
     "react-hot-loader": "^3.0.0-beta.5",
     "redux-logger": "^2.6.1",

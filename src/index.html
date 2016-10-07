@@ -11,6 +11,8 @@
 	<meta name="msapplication-tap-highlight" content="no" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
+
+
     <!-- s3 path hack -->
     <script>
         history.pushState({}, "entry page", location.hash.substring(1));
@@ -19,6 +21,12 @@
 
 <body>
 	<div id="root"></div>
+    
+    <!-- clipboard js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.js"></script>
+    <script>
+        (function() { new Clipboard('.copy-btn'); })();
+    </script>
 </body>
 
 </html>

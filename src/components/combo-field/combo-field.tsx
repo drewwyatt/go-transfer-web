@@ -6,6 +6,8 @@ export interface ComboFieldProps {
     styles?: React.CSSProperties;
 }
 
+// declare var Clipboard: any;
+
 export function ComboField({ text, styles }: ComboFieldProps): JSX.Element {
     const wrapStyles = {
         height: '36px',
@@ -28,13 +30,19 @@ export function ComboField({ text, styles }: ComboFieldProps): JSX.Element {
 
     const buttonStyle = {
         width: '72px',
-        float: 'right'
+        float: 'right',
+        background: 'rgb(63, 81, 181)',
+        color: '#fff'
     };
+
+    const btnId = `combo-btn-${new Date().getMilliseconds()}`;
+    const fieldId = `combo-field-${new Date().getMilliseconds()}`;
 
     return (
         <div style={Object.assign({}, wrapStyles, styles || {})}>
-            <input style={textStyles} type='text' value={text} onChange={noop => noop} />
-            <Button raised colored ripple style={buttonStyle}>COPY</Button>
+            <input style={textStyles} id={fieldId} type='text' value={text} onChange={noop => noop} />
+            { /* <Button raised colored ripple style={buttonStyle}>COPY</Button> */ }
+            <button data-clipboard-target={`#${fieldId}`} style={buttonStyle} id={btnId} className='copy-btn mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--raised mdl-button--colored'>COPY</button>
         </div>
     );
 }

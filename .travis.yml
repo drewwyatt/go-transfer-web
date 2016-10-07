@@ -2,10 +2,8 @@ language: node_js
 node_js:
 - '6'
 - '6.1'
-before_script:
-- npm install -g webpack
 script:
-- webpack  
+- npm run build  
 deploy:
   provider: s3
   access_key_id: AKIAIBIKZAJYXFLKXXEA

@@ -4,9 +4,9 @@ node_js:
 - '6.1'
 deploy:
   before_script:
-    - npm install -g webpack
+  - npm install -g webpack
   script:
-    - webpack  
+  - webpack  
   provider: s3
   access_key_id: AKIAIBIKZAJYXFLKXXEA
   secret_access_key:

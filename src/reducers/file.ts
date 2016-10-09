@@ -7,14 +7,14 @@ export interface FileState {
     fetchStatus: IFetchStatus;
     errorReason: string;
     name: string;
-    available: IAvailability;
+    availability: IAvailability;
 }
 
 const DEFAULT_STATE: FileState = {
     fetchStatus: FetchStatus.NOT_FETCHED,
     errorReason: '',
     name: '',
-    available: Availability.UNKNOWN
+    availability: Availability.UNKNOWN
 };
 
 export default function fileReducer(state: FileState = DEFAULT_STATE, action: Types.FileAction): FileState {

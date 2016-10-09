@@ -1,12 +1,10 @@
 language: node_js
 node_js:
-- '6'
 - '6.1'
 after_success:
 - npm run build
 - bash deploy.sh
 env:
   global:
-    - NODE_ENV: 'production'
     - BASE_PATH: go-transfer-web
     - secure: P6FweNouYvl4lNUf13jTgCdXMD8z5ZKp5H2tSZOQKxQ+xRFUWFk3X+8H8R5b1Wcb1+8h866D+SqSFumaAZqmB3ao94pt8P93qx+6/OQYwESQEMyizkQ723xPac2VbK984uwavUieuEofUFbRpfB+KieNYoq2+1hlq6zby7z+AsDp9aoSIAQXs5iNfqd7Tc0SqHRpM8Ie/QbbzPpbjdlop7cYc0ZSU4Y/Rnvxd0Bp1e/1Q1hfAGHbqWbS9E2JlE+uQ9CtppvPeiX/OTpAebSzH3lTjI9txzE8FMVDWrU0MQixlU/du3jZSMVkSgF/9bCI0p7kPjsEj3dTV5f8Wkx8Tz+Whn0zYJWeUAg1hxmvQr+aINH4DyLb0jcz5yizodpX/I0wfIDce/8nQTV3HU25vdWSHdcsVBVj6CCBpmD29uy9CMHQ2VtFK8DKe3IMDbZOKuET+hbdstoSnwjq3sRRCpF53b43ObgW6K851MtyiKb6jMMVHOUrT7wGeieUsTS9wNqMvZh+IUaX5Tjf93+b+i2SGlNsDzPE1u1pmtAxHm1JV2Kr43x2CftrF+VC5Jgrw+q8IVERPZcyc1AHJY6VUC8Vi9th83Cj+c5X64p/JLqcdTqh9HOsxGWVI8kymBjr54MCSX1fkhS/efi8Fgxrxn56gFqtYiTxYN6QD79pqpY=

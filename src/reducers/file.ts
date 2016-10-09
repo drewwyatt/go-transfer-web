@@ -1,5 +1,5 @@
 import { Types } from '../actions';
-import { FetchStatus, IFetchStatus } from '../models';
+import { Availability, IAvailability, FetchStatus, IFetchStatus } from '../models';
 
 const { FileActions } = Types;
 
@@ -7,12 +7,14 @@ export interface FileState {
     fetchStatus: IFetchStatus;
     errorReason: string;
     name: string;
+    available: IAvailability;
 }
 
 const DEFAULT_STATE: FileState = {
     fetchStatus: FetchStatus.NOT_FETCHED,
     errorReason: '',
-    name: ''
+    name: '',
+    available: Availability.UNKNOWN
 };
 
 export default function fileReducer(state: FileState = DEFAULT_STATE, action: Types.FileAction): FileState {

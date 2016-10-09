@@ -2,6 +2,12 @@
 
 set -o errexit -o nounset
 
+if [ "$TRAVIS_BRANCH" != "master" ]
+then
+  echo "This commit was made against $TRAVIS_BRANCH -- skipping deploy."
+  exit 0
+fi
+
 rev=$(git rev-parse --short HEAD)
 
 cd dist

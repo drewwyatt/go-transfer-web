@@ -1,12 +1,16 @@
 import { BaseAction } from './base-action';
+import { IAvailability } from '../../models';
 
-export type FileAction = FileActions.PostFile | FileActions.PostFileSuccess | FileActions.PostFileError;
+export type FileAction = FileActions.PostFile | FileActions.PostFileSuccess | FileActions.PostFileError | FileActions.CheckFileAvailability | FileActions.SetFileAvailability;
 
 export namespace FileActions {
     export const ActionType = {
         POST_FILE: 'POST_FILE' as 'POST_FILE',
         POST_FILE_SUCCESS: 'POST_FILE_SUCCESS' as 'POST_FILE_SUCCESS',
         POST_FILE_ERROR: 'POST_FILE_ERROR' as 'POST_FILE_ERROR',
+        
+        CHECK_FILE_AVAILABILITY: 'CHECK_FILE_AVAILABILITY' as 'CHECK_FILE_AVAILABILITY',
+        SET_FILE_AVAILABILITY: 'SET_FILE_AVAILABILITY' as 'SET_FILE_AVAILABILITY'
     };
 
     export interface PostFile extends BaseAction {
@@ -22,5 +26,15 @@ export namespace FileActions {
     export interface PostFileError extends BaseAction {
         type: 'POST_FILE_ERROR',
         payload: { reason: string }
+    };
+
+    export interface CheckFileAvailability extends BaseAction {
+        type: 'CHECK_FILE_AVAILABILITY',
+        payload: { fileName: string }
+    };
+
+    export interface SetFileAvailability extends BaseAction {
+        type: 'SET_FILE_AVAILABILITY',
+        payload: { availability: IAvailability }
     };
 }

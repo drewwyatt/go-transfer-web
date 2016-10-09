@@ -35,6 +35,10 @@ var config = {
         new CopyWebpackPlugin([
             { from: path.resolve('./src/404.html') }
         ]),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+            'process.env.BASE_PATH': JSON.stringify(process.env.BASE_PATH || '/'),
+        }),
 	],
     module: {
         loaders: [

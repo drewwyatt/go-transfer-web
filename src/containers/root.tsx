@@ -17,7 +17,8 @@ class Root extends React.Component<RootProps, void> {
                 <Layout fixedHeader>
                     <Header title='Go Transfer'>
                         <Navigation>
-                            <a href='https://github.com/daltonclaybrook/go-transfer' target='_blank'>Github</a>
+                            <a href='https://github.com/daltonclaybrook/go-transfer' target='_blank'>Go Transfer</a>
+                            <a href='https://github.com/drewwyatt/go-transfer-web' target='_blank'>[This App]</a>
                         </Navigation>
                     </Header>
                     <Content>

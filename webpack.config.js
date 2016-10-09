@@ -23,7 +23,7 @@ var config = {
 	},
     output: {
 		path: path.join(__dirname, 'dist'),
-		publicPath: process.env.BASE_PATH || '/',
+		publicPath: (process.env.BASE_PATH) ? '/' + process.env.BASE_PATH : '/',
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].chunk.js'
 	},

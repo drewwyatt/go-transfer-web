@@ -1,11 +1,20 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Creators } from '../actions';
+import { IAppState, IAvailability, Availability } from '../models';
 
 export interface DownloadProps {
     fileName: string;
+    fileAvailability: IAvailability;
+    checkAvailability(fileName: string): void;
 }
 
 class Download extends React.Component<DownloadProps, void> {
+    componentWillMount(): void {
+        const { fileName, checkAvailability } = this.props;
+        checkAvailability(fileName);
+    }
+
     render(): JSX.Element {
         return (
             <div>
@@ -16,8 +25,9 @@ class Download extends React.Component<DownloadProps, void> {
     }
 
     private _linkIfExists(): JSX.Element {
-        const { fileName } = this.props;
-        if (fileName && fileName.trim()) {
+        const { fileName, fileAvailability } = this.props;
+        if (fileAvailability === Availability.AVAILABLE) {
+            // TODO: make this an environment variable
             return <a href={`https://go-transfer.herokuapp.com/${fileName}`} download={fileName}>DOWNLOAD THE FILE</a>;
         }
 
@@ -25,11 +35,20 @@ class Download extends React.Component<DownloadProps, void> {
     }
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state: IAppState, ownProps) {
     return {
-        fileName: ownProps.params.fileName
+        fileName: ownProps.params.fileName,
+        fileAvailability: state.file.availability
     };
 }
 
-export default connect(mapStateToProps)(Download);
+function mapDispatchToProps(dispatch) {
+    return {
+        checkAvailability(fileName: string): void {
+            dispatch(Creators.File.checkAvailability(fileName));
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Download);
 

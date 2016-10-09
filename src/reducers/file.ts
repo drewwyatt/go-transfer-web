@@ -34,6 +34,13 @@ export default function fileReducer(state: FileState = DEFAULT_STATE, action: Ty
                 fetchStatus: FetchStatus.ERROR,
                 errorReason: action.payload.reason
             });
+        case FileActions.ActionType.CHECK_FILE_AVAILABILITY:
+            return Object.assign({}, state, {
+                availability: Availability.UNKNOWN
+            });
+        case FileActions.ActionType.SET_FILE_AVAILABILITY:
+            const { availability } = action.payload;
+            return Object.assign({}, state, { availability });
         default:
             return state;
     }

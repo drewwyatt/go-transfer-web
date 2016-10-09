@@ -34,7 +34,7 @@ class Upload extends React.Component<UploadProps, void> {
             <section>
                 <div className='mdl-grid'>
                     <div className='mdl-cell mdl-cell--12-col' style={comboWrapperStyles}> 
-                        <ComboField styles={comboStyles} text={`http://go-transfer.s3-website-us-west-2.amazonaws.com/download/${fileName}`} /> 
+                        <ComboField styles={comboStyles} text={this._fileUrl(fileName)} /> 
                     </div>
                 </div>
                <div className='mdl-grid'>
@@ -47,6 +47,15 @@ class Upload extends React.Component<UploadProps, void> {
                 {this._errorMessageIfExists()}
             </section>
         );
+    }
+
+    private _fileUrl(fileName: string): string {
+        return [
+            window.location.origin,
+            process.env.BASE_PATH,
+            'download',
+            fileName
+        ].filter(i => i !== '/').join('/');
     }
 
 

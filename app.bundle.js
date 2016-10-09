@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "fec8d93d61be5df0c91f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "bc9d617400704c59438a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -570,7 +570,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "go-transfer-web";
 
 /******/ 	// __webpack_hash__
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
@@ -3074,7 +3074,7 @@
 /* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
-	eval("\"use strict\";\n\nvar React = __webpack_require__(2);\nvar react_router_1 = __webpack_require__(173);\nvar containers_1 = __webpack_require__(416);\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = React.createElement(react_router_1.Route, { path: '/', component: containers_1.App }, React.createElement(react_router_1.Route, { path: 'upload', component: containers_1.Upload }), React.createElement(react_router_1.Route, { path: 'download/:fileName', component: containers_1.Download }));\n;\n\nvar _temp = function () {\n    if (typeof __REACT_HOT_LOADER__ === 'undefined') {\n        return;\n    }\n}();\n\n;//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNDE1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vc3JjL3JvdXRlcy50c3g/YzhhZCJdLCJzb3VyY2VzQ29udGVudCI6WyJcInVzZSBzdHJpY3RcIjtcblxudmFyIFJlYWN0ID0gcmVxdWlyZSgncmVhY3QnKTtcbnZhciByZWFjdF9yb3V0ZXJfMSA9IHJlcXVpcmUoJ3JlYWN0LXJvdXRlcicpO1xudmFyIGNvbnRhaW5lcnNfMSA9IHJlcXVpcmUoJy4vY29udGFpbmVycycpO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7IHZhbHVlOiB0cnVlIH0pO1xuZXhwb3J0cy5kZWZhdWx0ID0gUmVhY3QuY3JlYXRlRWxlbWVudChyZWFjdF9yb3V0ZXJfMS5Sb3V0ZSwgeyBwYXRoOiAnLycsIGNvbXBvbmVudDogY29udGFpbmVyc18xLkFwcCB9LCBSZWFjdC5jcmVhdGVFbGVtZW50KHJlYWN0X3JvdXRlcl8xLlJvdXRlLCB7IHBhdGg6ICd1cGxvYWQnLCBjb21wb25lbnQ6IGNvbnRhaW5lcnNfMS5VcGxvYWQgfSksIFJlYWN0LmNyZWF0ZUVsZW1lbnQocmVhY3Rfcm91dGVyXzEuUm91dGUsIHsgcGF0aDogJ2Rvd25sb2FkLzpmaWxlTmFtZScsIGNvbXBvbmVudDogY29udGFpbmVyc18xLkRvd25sb2FkIH0pKTtcbjtcblxudmFyIF90ZW1wID0gZnVuY3Rpb24gKCkge1xuICAgIGlmICh0eXBlb2YgX19SRUFDVF9IT1RfTE9BREVSX18gPT09ICd1bmRlZmluZWQnKSB7XG4gICAgICAgIHJldHVybjtcbiAgICB9XG59KCk7XG5cbjtcblxuXG4vKioqKioqKioqKioqKioqKipcbiAqKiBXRUJQQUNLIEZPT1RFUlxuICoqIC4vc3JjL3JvdXRlcy50c3hcbiAqKiBtb2R1bGUgaWQgPSA0MTVcbiAqKiBtb2R1bGUgY2h1bmtzID0gMFxuICoqLyJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=");
+	eval("/* WEBPACK VAR INJECTION */(function(process) {\"use strict\";\n\nvar React = __webpack_require__(2);\nvar react_router_1 = __webpack_require__(173);\nvar containers_1 = __webpack_require__(416);\nObject.defineProperty(exports, \"__esModule\", { value: true });\nexports.default = React.createElement(react_router_1.Route, { path: process.env.BASE_PATH || '/', component: containers_1.App }, React.createElement(react_router_1.Route, { path: 'upload', component: containers_1.Upload }), React.createElement(react_router_1.Route, { path: 'download/:fileName', component: containers_1.Download }));\n;\n\nvar _temp = function () {\n    if (typeof __REACT_HOT_LOADER__ === 'undefined') {\n        return;\n    }\n}();\n\n;\n/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiNDE1LmpzIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vc3JjL3JvdXRlcy50c3g/YzhhZCJdLCJzb3VyY2VzQ29udGVudCI6WyJcInVzZSBzdHJpY3RcIjtcblxudmFyIFJlYWN0ID0gcmVxdWlyZSgncmVhY3QnKTtcbnZhciByZWFjdF9yb3V0ZXJfMSA9IHJlcXVpcmUoJ3JlYWN0LXJvdXRlcicpO1xudmFyIGNvbnRhaW5lcnNfMSA9IHJlcXVpcmUoJy4vY29udGFpbmVycycpO1xuT2JqZWN0LmRlZmluZVByb3BlcnR5KGV4cG9ydHMsIFwiX19lc01vZHVsZVwiLCB7IHZhbHVlOiB0cnVlIH0pO1xuZXhwb3J0cy5kZWZhdWx0ID0gUmVhY3QuY3JlYXRlRWxlbWVudChyZWFjdF9yb3V0ZXJfMS5Sb3V0ZSwgeyBwYXRoOiBwcm9jZXNzLmVudi5CQVNFX1BBVEggfHwgJy8nLCBjb21wb25lbnQ6IGNvbnRhaW5lcnNfMS5BcHAgfSwgUmVhY3QuY3JlYXRlRWxlbWVudChyZWFjdF9yb3V0ZXJfMS5Sb3V0ZSwgeyBwYXRoOiAndXBsb2FkJywgY29tcG9uZW50OiBjb250YWluZXJzXzEuVXBsb2FkIH0pLCBSZWFjdC5jcmVhdGVFbGVtZW50KHJlYWN0X3JvdXRlcl8xLlJvdXRlLCB7IHBhdGg6ICdkb3dubG9hZC86ZmlsZU5hbWUnLCBjb21wb25lbnQ6IGNvbnRhaW5lcnNfMS5Eb3dubG9hZCB9KSk7XG47XG5cbnZhciBfdGVtcCA9IGZ1bmN0aW9uICgpIHtcbiAgICBpZiAodHlwZW9mIF9fUkVBQ1RfSE9UX0xPQURFUl9fID09PSAndW5kZWZpbmVkJykge1xuICAgICAgICByZXR1cm47XG4gICAgfVxufSgpO1xuXG47XG5cblxuLyoqKioqKioqKioqKioqKioqXG4gKiogV0VCUEFDSyBGT09URVJcbiAqKiAuL3NyYy9yb3V0ZXMudHN4XG4gKiogbW9kdWxlIGlkID0gNDE1XG4gKiogbW9kdWxlIGNodW5rcyA9IDBcbiAqKi8iXSwibWFwcGluZ3MiOiJBQUFBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VSb290IjoiIn0=");
 
 /***/ },
 /* 416 */

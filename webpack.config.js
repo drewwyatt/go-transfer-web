@@ -1,6 +1,10 @@
 var path = require('path');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+
+console.log('base path:');
+console.log(process.env.BASE_PATH);
 
 var config = {
 	debug: true,
@@ -19,7 +23,7 @@ var config = {
 	},
     output: {
 		path: path.join(__dirname, 'dist'),
-		publicPath: '/',
+		publicPath: process.env.BASE_PATH || '/',
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].chunk.js'
 	},
@@ -27,7 +31,10 @@ var config = {
 		new HtmlWebpackPlugin({
 			template: path.resolve('./src/index.html')
 		}),
-		new webpack.HotModuleReplacementPlugin()
+		new webpack.HotModuleReplacementPlugin(),
+        new CopyWebpackPlugin([
+            { from: path.resolve('./src/404.html') }
+        ]),
 	],
     module: {
         loaders: [

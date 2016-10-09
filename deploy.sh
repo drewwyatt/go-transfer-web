@@ -1,0 +1,1 @@
+echo "If you can see this, the deploy script would be running right now..."

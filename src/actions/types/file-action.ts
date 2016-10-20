@@ -1,7 +1,7 @@
 import { BaseAction } from './base-action';
 import { IAvailability } from '../../models';
 
-export type FileAction = FileActions.PostFile | FileActions.PostFileSuccess | FileActions.PostFileError | FileActions.CheckFileAvailability | FileActions.SetFileAvailability;
+export type FileAction = FileActions.PostFile | FileActions.PostFileSuccess | FileActions.PostFileError | FileActions.CheckFileAvailability | FileActions.SetFileAvailability | FileActions.ReportUploadProgress;
 
 export namespace FileActions {
     export const ActionType = {
@@ -10,7 +10,9 @@ export namespace FileActions {
         POST_FILE_ERROR: 'POST_FILE_ERROR' as 'POST_FILE_ERROR',
         
         CHECK_FILE_AVAILABILITY: 'CHECK_FILE_AVAILABILITY' as 'CHECK_FILE_AVAILABILITY',
-        SET_FILE_AVAILABILITY: 'SET_FILE_AVAILABILITY' as 'SET_FILE_AVAILABILITY'
+        SET_FILE_AVAILABILITY: 'SET_FILE_AVAILABILITY' as 'SET_FILE_AVAILABILITY',
+
+        REPORT_UPLOAD_PROGRESS: 'REPORT_UPLOAD_PROGRESS' as 'REPORT_UPLOAD_PROGRESS',
     };
 
     export interface PostFile extends BaseAction {
@@ -37,4 +39,9 @@ export namespace FileActions {
         type: 'SET_FILE_AVAILABILITY',
         payload: { availability: IAvailability }
     };
+
+    export interface ReportUploadProgress extends BaseAction {
+        type: 'REPORT_UPLOAD_PROGRESS',
+        payload: { progress: number }
+    }
 }

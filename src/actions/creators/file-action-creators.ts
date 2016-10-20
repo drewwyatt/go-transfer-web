@@ -36,4 +36,11 @@ export namespace File {
             payload: { availability }
         };
     }
+
+    export function reportProgress(progress: number): FileActions.ReportUploadProgress {
+        return {
+            type: FileActions.ActionType.REPORT_UPLOAD_PROGRESS,
+            payload: { progress }
+        };
+    }
 }

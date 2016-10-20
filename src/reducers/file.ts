@@ -8,13 +8,15 @@ export interface FileState {
     errorReason: string;
     name: string;
     availability: IAvailability;
+    uploadProgress: number;
 }
 
 const DEFAULT_STATE: FileState = {
     fetchStatus: FetchStatus.NOT_FETCHED,
     errorReason: '',
     name: '',
-    availability: Availability.UNKNOWN
+    availability: Availability.UNKNOWN,
+    uploadProgress: 0
 };
 
 export default function fileReducer(state: FileState = DEFAULT_STATE, action: Types.FileAction): FileState {
@@ -41,6 +43,9 @@ export default function fileReducer(state: FileState = DEFAULT_STATE, action: Ty
         case FileActions.ActionType.SET_FILE_AVAILABILITY:
             const { availability } = action.payload;
             return Object.assign({}, state, { availability });
+        case FileActions.ActionType.REPORT_UPLOAD_PROGRESS:
+            const { progress } = action.payload;
+            return Object.assign({}, state, { uploadProgress: progress });
         default:
             return state;
     }

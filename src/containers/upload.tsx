@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Creators } from '../actions';
 import { IFetchStatus, FetchStatus, IAppState } from '../models';
-import { Spinner, Textfield, Button } from 'react-mdl';
+import { Spinner, Textfield, Button, ProgressBar } from 'react-mdl';
 import { FileDrop } from '../components/file-drop';
 import { ComboField } from '../components/combo-field';
 import { FileName } from '../components/file-name';
@@ -11,6 +11,7 @@ export interface UploadProps {
     fileStatus: IFetchStatus;
     errorReason: string;
     fileName: string;
+    uploadProgress: number;
     postFile(file: File): void;
 }
 
@@ -43,7 +44,7 @@ class Upload extends React.Component<UploadProps, void> {
                     </div>
                 </div>
 
-                {this._spinnerIfUploading()}
+                {this._progressIndicator()}
                 {this._errorMessageIfExists()}
             </section>
         );
@@ -59,14 +60,15 @@ class Upload extends React.Component<UploadProps, void> {
     }
 
 
-    private _spinnerIfUploading(): JSX.Element {
-        const { fileStatus } = this.props;
+    private _progressIndicator(): JSX.Element {
+        const { fileStatus, uploadProgress } = this.props;
+        console.log('_progressIndicator', uploadProgress);
         if (fileStatus === FetchStatus.FETCHING) {
+            const msg = (uploadProgress === 100) ? 'DONE!' : '';
             return (
-                <div>
-                    <br />
-                    <Spinner />
-                    <br />
+                <div style={{ textAlign: 'center' }}>
+                    <ProgressBar style={{ margin: '10px auto' }} progress={uploadProgress} />
+                    <p style={{ display: 'block' }}>{msg}</p>
                 </div>
             );
         }
@@ -111,7 +113,8 @@ function mapStateToProps(state: IAppState): any { // TODO
     return {
         fileStatus: state.file.fetchStatus,
         errorReason: state.file.errorReason,
-        fileName: state.file.name
+        fileName: state.file.name,
+        uploadProgress: state.file.uploadProgress
     };
 }
 

@@ -18,9 +18,10 @@ class Download extends React.Component<DownloadProps, void> {
 
     render(): JSX.Element {
         return (
-            <div>
+            <section>
+                <h1>Go Transfer</h1>
                 {this._linkIfExists()}
-            </div>
+            </section>
         );
     }
 

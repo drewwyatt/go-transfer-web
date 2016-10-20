@@ -14,7 +14,6 @@ class App extends React.Component<AppProps, void> {
         };
         return (
             <section style={styles}>
-                <h1>Drop Your File</h1>
                 { children || <Upload /> }
             </section>
         );

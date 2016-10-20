@@ -33,6 +33,7 @@ class Upload extends React.Component<UploadProps, void> {
 
         return (
             <section>
+                <h1>{this._getHeader()}</h1>
                 <div className='mdl-grid'>
                     <div className='mdl-cell mdl-cell--12-col' style={comboWrapperStyles}> 
                         <ComboField styles={comboStyles} text={this._fileUrl(fileName)} /> 
@@ -48,6 +49,10 @@ class Upload extends React.Component<UploadProps, void> {
                 {this._errorMessageIfExists()}
             </section>
         );
+    }
+
+    private _getHeader(): string {
+        return this.props.fileStatus === FetchStatus.NOT_FETCHED ? 'DROP YOUR FILE' : 'COPY THIS LINK';
     }
 
     private _fileUrl(fileName: string): string {
